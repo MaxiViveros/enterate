@@ -1,0 +1,25 @@
+<div class="container">
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmitArticle()" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Body</label>
+      <input formControlName="body" type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input formControlName="name" type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Type</label>
+      <input formControlName="type" type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Like</label>
+      <input formControlName="like" type="number" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Dislike</label>
+      <input formControlName="dislike" type="number" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Subir</button>
+  </form>
+</div>

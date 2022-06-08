@@ -1,0 +1,12 @@
+
+@media (min-width: 375px) {
+  .commentsDialog {
+    width: 370px;
+  }
+  .cardArticle {
+    height: auto;
+  }
+}
+
+
+

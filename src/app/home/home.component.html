@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="container" *ngFor="let article of articles">
+  <div class="card-deck mt-3">
+    <div class="card">
+        <div class="card-header">
+          <h5>{{article.name}}</h5>
+        </div>
+        <div class="card-body" style="height: 10rem; overflow-y: scroll;">
+          <p class="card-title">{{article.body}}</p>
+          <p-tag styleClass="mr-2" icon="pi pi-tag" value="{{article.type}}"></p-tag>
+        </div>
+      <div class="card-footer d-flex align-items-start">
+        <button pButton pRipple type="button" icon="pi pi-thumbs-up" [label]="article.like.toString()" (click)="displayCommentBox=true" class="p-button-rounded p-button-text p-button-sm"></button>
+        <button pButton pRipple type="button" icon="pi pi-thumbs-down" [label]="article.dislike.toString()" (click)="displayCommentBox=true" class="p-button-rounded p-button-danger p-button-text p-button-sm"></button>
+        <button pButton pRipple type="button" icon="pi pi-comment" label="Comentar" (click)="displayArticleSelected(article)" class="p-button-rounded p-button-text p-button-sm" style=""></button>
+        <button pButton pRipple type="button" icon="pi pi-comments" label="Comentarios" (click)="displayCommentsOfArticle(article)" class="p-button-rounded p-button-text p-button-sm" style=""></button>
+      </div>
+    </div>
+    <!--MODAL PARA COMENTAR-->
+    <p-dialog header="Deja tu comentario" [(visible)]="displayCommentBox" [resizable]="false" [style]="{width: '300px'}" [responsive]="true" [draggable]="false">
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment(articleSelected)" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input formControlName="author" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Comentario</label>
+          <input formControlName="body" type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Valorar el articulo</label> <br>
+          <button pButton pRipple type="button" [disabled]="likeFlag" icon="pi pi-thumbs-up" (click)="like(articleSelected)" class="p-button-rounded p-button-text p-button-sm">
+          </button>
+          <button pButton pRipple type="button" [disabled]="dislikeFlag" icon="pi pi-thumbs-down" (click)="dislike(articleSelected)"
+                  class="p-button-rounded p-button-danger p-button-text p-button-sm">
+          </button>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </p-dialog>
+    <!--MODAL PARA VER COMENTARIOS-->
+    <p-dialog id="commentsDialog" class="d-inline-flex p-2" header="Comentarios de este articulo" *ngIf="displayComments" [(visible)]="displayComments" [resizable]="false" [style]="{width: '400px'}" [responsive]="true" [draggable]="false"
+              [draggable]="false">
+      <app-comments [article]="articleSelected"></app-comments>
+    </p-dialog>
+  </div>
+</div>
+
+<div class="container">
+  <app-footer></app-footer>
+</div>
+

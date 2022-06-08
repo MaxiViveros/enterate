@@ -1,0 +1,6 @@
+<div class="container" *ngFor="let comment of listOfCommentsOfArticle">
+      <p-panel header="{{comment.author}}" [style]="{'margin-top':'2em'}">
+        <p>{{comment.body}}</p>
+      </p-panel>
+</div>
+
